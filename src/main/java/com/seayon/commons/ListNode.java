@@ -7,10 +7,14 @@ package com.seayon.commons;
  * @Description 链表节点的定义
  */
 public class ListNode {
-	int val;
-	ListNode next;
+	public int val;
+	/**
+	 * 指针域，Java中对象都是引用类型，对象的名称其实就是指向这个对象的指针
+	 */
+	public ListNode next;
 
-	ListNode(int x) {
+	public ListNode(int x) {
 		this.val = x;
 	}
+
 }
