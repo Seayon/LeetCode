@@ -66,41 +66,32 @@ public class ArraySolutionCommon {
 	 */
 	public void rotate(int[][] matrix) {
 		int arrayLength = matrix.length;
-		for (int i = 0; i < matrix.length / 2; i++) {
-			int[] r1 = matrix[i];
-			int rowLast1 = r1[r1.length - 1 - i];
-			for (int j = r1.length - 1 - i; j > i; j--) {
-				r1[j] = r1[j - 1];
-			}
-			int columnLast1 = matrix[r1.length - 1 - i][r1.length - 1 - i];
-			for (int j = r1.length - 1 - i; j > i; j--) {
-				matrix[j][r1.length - 1 - i] = matrix[j - 1][r1.length - 1 - i];
-			}
-			matrix[i + 1][r1.length - 1 - i] = rowLast1;
+		//控制循环处理不超过前一半儿的行数
+		for (int i = 0; i < arrayLength / 2; i++) {
 
-			int rowLast2 = matrix[matrix[i].length - 1 - i][i];
-			for (int j = i; j < matrix[i].length - 1 - i; j++) {
-				matrix[matrix[i].length - 1 - i][j] = matrix[matrix[i].length - 1 - i][j + 1];
+			//一次处理一圈儿
+			for (int j = i; j < arrayLength - i - 1; j++) {
+				int t = matrix[i][j];
+				matrix[i][j] = matrix[arrayLength - j - 1][i];
+				matrix[arrayLength - j - 1][i] = matrix[arrayLength - i - 1][arrayLength - j - 1];
+				matrix[arrayLength - i - 1][arrayLength - j - 1] = matrix[j][arrayLength - 1 - i];
+				matrix[j][arrayLength - 1 - i] = t;
 			}
-			matrix[r1.length - 1 - i][r1.length - 1 - i - 1] = columnLast1;
-
-			for (int j = i; j < matrix[i].length -1 - i; j++) {
-				matrix[j][i] = matrix[j + 1][i];
-			}
-			matrix[matrix[i].length - 1 - i -1][i] = rowLast2;
 		}
+
 	}
 
 	@Test
 	public void test() {
 		int[][] a = new int[][]{
-				{15, 3, 2, 5, 1, 222},
+				{1515, 3, 2, 5, 1, 222},
 				{14, 3, 4, 1, 333, 4},
 				{12, 6, 8, 9, 5, 6},
 				{19, 2, 3, 4, 5, 2},
 				{1616, 7, 0, 1, 6, 4},
 				{111, 999, 0, 1, 6, 777}
 		};
+		System.out.println(a[1][2]);
 		rotate(a);
 		printArray(a);
 		//System.out.println(singleNumber(new int[]{}));
