@@ -31,6 +31,7 @@ public class WordSubsets {
 							tag = false;
 						}
 					}
+
 					if (!tag) {
 						break;
 					}

@@ -16,7 +16,8 @@ public class HasGroupsSizeX {
 		HashMap<Integer, Integer> map = new HashMap<>();
 
 		for (int i = 0; i < deck.length; i++) {
-			if (map.containsKey(deck[i])) {
+			if (map.containsKey(deck[
+					i])) {
 				int t = map.get(deck[i]);
 				t++;
 				map.put(deck[i], t);
