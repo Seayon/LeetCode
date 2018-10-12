@@ -11,23 +11,27 @@ import org.junit.Test;
 public class IsPalindrome {
 	public boolean isPalindrome(String s) {
 		s = s.toLowerCase();
+		int length = s.length() - 1;
 		for (int i = 0; i < s.length() - 1; i++) {
 			int l = s.charAt(i);
 			if ((l >= 48 && l <= 57) || (l >= 65 && l <= 90) || (l >= 97 && l <= 122)) {
-				for (int j = s.length(); j > 0; j--) {
+				for (int j = length; j > i; j--) {
 					int r = s.charAt(j);
 					if ((r >= 48 && r <= 57) || (r >= 65 && r <= 90) || (r >= 97 && r <= 122)) {
 						if (l != r) {
 							return false;
+						}else {
+							break;
 						}
 					}else {
+						length --;
 						continue;
 					}
 				}
+				length --;
 			} else {
 				continue;
 			}
-
 		}
 		return true;
 	}
@@ -47,5 +51,6 @@ public class IsPalindrome {
 		System.out.println(isPalindrome("race a car"));
 		System.out.println(isPalindrome("rac acar"));
 		System.out.println(isPalindrome("A man, a plan, a canal: Panama"));
+		System.out.println(isPalindrome("amanaplanacanalpanama"));
 	}
 }
